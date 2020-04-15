@@ -1,0 +1,24 @@
+name: Vector Push Build for Linux
+
+on: 
+  push:
+  release:
+    types: [prereleased]
+
+jobs:
+# =================================================================================== LINUX
+  delete-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: kolpav/purge-artifacts-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          expire-in: 1days # Setting this to 0 will delete all artifacts
+  Linux:
+    name: Push build for Linux
+    runs-on: ubuntu-16.04
+    steps:
+      - name: Checking out sources
+        uses: actions/checkout@master
+      - name: Restoring submodules
+        run: git submodule update --force --recursive --init --remote
