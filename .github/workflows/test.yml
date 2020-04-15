@@ -32,4 +32,4 @@ jobs:
       - uses: ./
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          expire-in: '30minutes'
+          expire-in: '1minutes'
